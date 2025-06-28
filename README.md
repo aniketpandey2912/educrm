@@ -1,82 +1,119 @@
-# Educrm
+# 🧠 EduCRM – Nx Monorepo
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+EduCRM is a multi-role education CRM platform built using Angular, Node.js, and Nx. This monorepo contains separate apps for students, admins, support staff, and super admins, with shared libraries for UI components, authentication, models, and utilities.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+---
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## 📁 Project Structure
 
-## Finish your CI setup
-
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/TApuhxmFVp)
-
-
-## Run tasks
-
-To run the dev server for your app, use:
-
-```sh
-npx nx serve educrm
+```
+apps/
+  client/
+    student/
+    admin/
+    support-staff/
+    super-admin/
+  server/
+libs/
+  shared/
+    ui/
+    auth/
+    models/
+    utils/
+  data-access/
+    api-client/
 ```
 
-To create a production bundle:
+---
 
-```sh
-npx nx build educrm
+## 🚀 Tech Stack
+
+- **Frontend**: Angular + PrimeNG
+- **Backend**: Node.js + Express
+- **Database**: MongoDB Atlas
+- **Storage**: Firebase or Cloudinary (TBD)
+- **Monorepo Tooling**: Nx
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/aniketpandey2912/educrm.git
+cd educrm
 ```
 
-To see all available targets to run for a project, run:
-
-```sh
-npx nx show project educrm
+```bash
+npm install -g nx
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+💡 Make sure you have Node.js v18+ and Nx CLI globally installed:
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+2. Install Dependencies
 
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/angular:app demo
+```bash
+npm install
 ```
 
-To generate a new library, use:
+3. Run Frontend App (Example: Student)
 
-```sh
-npx nx g @nx/angular:lib mylib
+```bash
+nx serve client-student
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+Replace client-student with client-admin, client-support-staff, or client-super-admin as needed.
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+4. Run Backend API
 
+```bash
+nx serve server
+```
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+🏗️ Library Commands
+Example commands used in the project:
 
-## Install Nx Console
+```bash
+# Angular app inside client
+nx g @nx/angular:app --name=admin --directory=apps/client/admin --no-interactive
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+# Node.js backend app
+nx g @nx/node:app --name=server --directory=apps/server --no-interactive
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+# Angular library (UI, Auth, etc.)
+nx g @nx/angular:lib --name=ui --directory=libs/shared/ui --no-interactive
 
-## Useful links
+# Reusable component inside UI lib
+nx g @nx/angular:component --name=button --project=shared-ui --export --flat
 
-Learn more:
+# Service or utility
+nx g @nx/angular:service --name=auth --project=shared-auth
+```
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+🧪 Lint, Format & Test
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```bash
+# Lint a specific project
+nx lint client-student
+
+# Format codebase
+nx format:write
+
+# Run unit tests
+nx test shared-ui
+```
+
+📘 Coding Guidelines
+All naming conventions, folder rules, and commit standards are documented in:
+
+📄 CODING_GUIDELINES.md
+
+💡 Useful Tips
+Use `nx graph` to visualize project dependencies
+
+Use `nx run-many` to build/test/lint multiple projects at once
+
+Use `nx affected:apps` after a PR to see what changed
+
+Use `nx build <project>` before deployment
