@@ -19,7 +19,31 @@
       "@educrm/auth": ["libs/shared/auth/src/index.ts"],
       "@educrm/models": ["libs/shared/models/src/index.ts"],
       "@educrm/ui": ["libs/shared/ui/src/index.ts"],
-      "@educrm/utils": ["libs/shared/utils/src/index.ts"]
+      "@educrm/utils": ["libs/shared/utils/src/index.ts"],
+      "@educrm/environment/student": [
+        "apps/client/config/environments/student/environment.ts"
+      ],
+      "@educrm/environment/student.prod": [
+        "apps/client/config/environments/student/environment.prod.ts"
+      ],
+      "@educrm/environment/admin": [
+        "apps/client/config/environments/admin/environment.ts"
+      ],
+      "@educrm/environment/admin.prod": [
+        "apps/client/config/environments/admin/environment.prod.ts"
+      ],
+      "@educrm/environment/staff": [
+        "apps/client/config/environments/support-staff/environment.ts"
+      ],
+      "@educrm/environment/staff.prod": [
+        "apps/client/config/environments/support-staff/environment.prod.ts"
+      ],
+      "@educrm/environment/super": [
+        "apps/client/config/environments/super-admin/environment.ts"
+      ],
+      "@educrm/environment/super.prod": [
+        "apps/client/config/environments/super-admin/environment.prod.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

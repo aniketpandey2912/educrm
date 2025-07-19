@@ -2,7 +2,13 @@
   "name": "@educrm/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "student": "nx serve student --port=4300 --open",
+    "admin": "nx serve admin --port=4301 --open",
+    "support": "nx serve support-staff --port=4302 --open",
+    "super": "nx serve super-admin --port=4303 --open",
+    "server": "nx serve server"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~19.2.0",
@@ -18,6 +24,7 @@
     "bcrypt": "^6.0.0",
     "bootstrap": "^5.3.7",
     "cors": "^2.8.5",
+    "css-select": "5.1.0",
     "dayjs": "^1.11.13",
     "dotenv": "^17.0.0",
     "express": "^5.1.0",

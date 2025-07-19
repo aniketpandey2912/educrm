@@ -39,7 +39,13 @@
               "maximumError": "8kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/client/config/environments/admin/environment.ts",
+              "with": "apps/client/config/environments/admin/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "optimization": false,
@@ -58,6 +64,10 @@
         "development": {
           "buildTarget": "admin:build:development"
         }
+      },
+      "options": {
+        "browserTarget": "admin:build",
+        "proxyConfig": "apps/client/config/proxy.conf.json"
       },
       "defaultConfiguration": "development"
     },

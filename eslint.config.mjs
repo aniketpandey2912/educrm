@@ -1,6 +1,7 @@
 import nx from '@nx/eslint-plugin';
 
-export default [
+/** @type {import("eslint").Linter.FlatConfig[]} */
+const config = [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
@@ -8,7 +9,7 @@ export default [
     ignores: ['**/dist'],
   },
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['*.ts', '*.tsx', '*.js', '*.jsx'],
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
@@ -25,18 +26,6 @@ export default [
       ],
     },
   },
-  {
-    files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.cjs',
-      '**/*.mjs',
-    ],
-    // Override or add rules here
-    rules: {},
-  },
 ];
+
+export default config;
