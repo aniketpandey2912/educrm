@@ -28,10 +28,10 @@ apps/
 
 ## 🌍 Proxy Configuration
 
-**Location:**  
+**Location:**
 `apps/client/config/proxy.conf.json`
 
-**Purpose:**  
+**Purpose:**
 Routes frontend API calls to local backend server during development.
 
 ```json
