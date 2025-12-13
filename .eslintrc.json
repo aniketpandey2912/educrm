@@ -53,7 +53,7 @@
           // 3️⃣ Top-level constants → UPPER_SNAKE_CASE
           {
             "selector": "variable",
-            "modifiers": ["const", "global"],
+            "modifiers": ["const", "exported"],
             "format": ["UPPER_CASE"]
           }
         ]
