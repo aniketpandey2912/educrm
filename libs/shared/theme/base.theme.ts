@@ -1,5 +1,5 @@
 import { definePreset } from '@primeng/themes';
-import Aura from '@primeuix/themes/aura';
+import Aura from '@primeuix/themes/dist/aura';
 
 export const LightTheme = definePreset(Aura, {
   primitive: {

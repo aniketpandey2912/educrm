@@ -1,3 +1,37 @@
 {
-  "nxConsole.generateAiAgentRules": true
+  "nxConsole.generateAiAgentRules": true,
+
+  // 🧹 Formatting
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Ensure Prettier runs only on supported files
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // 🚫 Disable conflicting formatters
+  "typescript.format.enable": false,
+  "javascript.format.enable": false,
+
+  // 🧠 ESLint integration
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["typescript", "html"],
+  "eslint.run": "onType",
+
+  // Nx performance
+  "nxConsole.enableTelemetry": false,
+
+  // Quality of life
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "editor.tabSize": 2
 }

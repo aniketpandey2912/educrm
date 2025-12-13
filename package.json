@@ -7,7 +7,13 @@
     "admin": "nx serve admin --port=4301 --open",
     "support": "nx serve support-staff --port=4302 --open",
     "super": "nx serve super-admin --port=4303 --open",
-    "server": "nx serve server"
+    "server": "nx serve server",
+    "fix": "nx format:write && nx affected:lint --fix"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,css,scss,md}": [
+      "prettier --write"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -71,11 +77,13 @@
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-cypress": "^3.5.0",
+    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-environment-node": "^29.7.0",
     "jest-preset-angular": "~14.4.0",
     "jsonc-eslint-parser": "^2.1.0",
+    "lint-staged": "^16.2.7",
     "ng-packagr": "~19.2.0",
     "nx": "20.8.2",
     "postcss": "^8.4.5",

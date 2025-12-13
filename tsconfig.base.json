@@ -17,36 +17,32 @@
     "paths": {
       "@educrm/api-client": ["libs/data-access/api-client/src/index.ts"],
       "@educrm/auth": ["libs/shared/auth/src/index.ts"],
-      "@educrm/environment/admin": [
-        "apps/client/config/environments/admin/environment.ts"
-      ],
+      "@educrm/environment/admin": ["apps/client/config/environments/admin/environment.ts"],
       "@educrm/environment/admin.prod": [
         "apps/client/config/environments/admin/environment.prod.ts"
       ],
-      "@educrm/environment/staff": [
-        "apps/client/config/environments/support-staff/environment.ts"
-      ],
+      "@educrm/environment/staff": ["apps/client/config/environments/support-staff/environment.ts"],
       "@educrm/environment/staff.prod": [
         "apps/client/config/environments/support-staff/environment.prod.ts"
       ],
-      "@educrm/environment/student": [
-        "apps/client/config/environments/student/environment.ts"
-      ],
+      "@educrm/environment/student": ["apps/client/config/environments/student/environment.ts"],
       "@educrm/environment/student.prod": [
         "apps/client/config/environments/student/environment.prod.ts"
       ],
-      "@educrm/environment/super": [
-        "apps/client/config/environments/super-admin/environment.ts"
-      ],
+      "@educrm/environment/super": ["apps/client/config/environments/super-admin/environment.ts"],
       "@educrm/environment/super.prod": [
         "apps/client/config/environments/super-admin/environment.prod.ts"
       ],
       "@educrm/models": ["libs/shared/models/src/index.ts"],
       "@educrm/services": ["libs/shared/http-services/src/index.ts"],
-      "@educrm/themes/*": ["libs/shared/themes/*"],
+      "@educrm/themes/*": ["libs/shared/theme/*"],
       "@educrm/ui": ["libs/shared/ui/src/index.ts"],
       "@educrm/utils": ["libs/shared/utils/src/index.ts"]
-    }
+    },
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true
   },
   "exclude": ["node_modules", "tmp"]
 }

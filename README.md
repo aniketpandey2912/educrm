@@ -49,23 +49,23 @@ cd educrm
 npm install -g nx
 ```
 
-💡 Make sure you have Node.js v18+ and Nx CLI globally installed:
+💡 Requirements: Node.js v18+ and the Nx CLI (optional globally — you can also run via npx).
 
-2. Install Dependencies
+2. Install dependencies
 
 ```bash
 npm install
 ```
 
-3. Run Frontend App (Example: Student)
+3. Run a frontend app (example: student)
 
 ```bash
 nx serve client-student
 ```
 
-Replace client-student with client-admin, client-support-staff, or client-super-admin as needed.
+Replace `client-student` with `client-admin`, `client-support-staff`, or `client-super-admin` as needed.
 
-4. Run Backend API
+4. Run the backend API
 
 ```bash
 nx serve server
@@ -91,12 +91,27 @@ nx g @nx/angular:component --name=button --project=shared-ui --export --flat
 nx g @nx/angular:service --name=auth --project=shared-auth
 ```
 
-🧪 Lint, Format & Test
+🧪 Formatting, Linting & Fixing
+
+🔧 Auto-fix formatting and lint issues
 
 ```bash
-# Lint a specific project
-nx lint client-student
+npm run fix
+```
 
+This command:
+
+- formats the repository with Prettier
+- fixes lint issues for affected projects only
+
+🔍 Lint a specific project
+
+```bash
+nx lint client-student
+nx lint shared-ui
+```
+
+```bash
 # Format codebase
 nx format:write
 
@@ -104,16 +119,45 @@ nx format:write
 nx test shared-ui
 ```
 
+🚦 Git Workflow & Pre-push Rules
+
+A pre-push hook is configured using Husky.
+
+Before every git push, the following runs automatically:
+
+```bash
+nx affected -t lint test build
+```
+
+If any check fails → push is blocked
+
+Fix the errors and push again
+
+You do not need to run these manually.
+
 📘 Coding Guidelines
 All naming conventions, folder rules, and commit standards are documented in:
 
 📄 CODING_GUIDELINES.md
 
 💡 Useful Tips
-Use `nx graph` to visualize project dependencies
 
-Use `nx run-many` to build/test/lint multiple projects at once
+```bash
+# Visualize dependency graph
 
-Use `nx affected:apps` after a PR to see what changed
+nx graph
 
-Use `nx build <project>` before deployment
+# See affected projects
+
+nx affected:apps
+nx affected:libs
+
+# Run tasks on affected projects
+
+nx affected -t lint
+nx affected -t build
+```
+
+✅ Final Rule
+
+If ``git push` succeeds, the code is safe.
