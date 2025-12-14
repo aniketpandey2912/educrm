@@ -30,6 +30,15 @@ libs/
 
 ---
 
+### Angular Selector Rules
+
+- All components must use the `educrm-` prefix
+- All selectors must be kebab-case
+- Directives must use attribute selectors with camelCase
+- ESLint enforces these rules automatically
+
+---
+
 ## 📆 Package Management
 
 - ✅ Single `package.json` in the root of the Nx workspace.
@@ -129,6 +138,10 @@ nx g @nx/angular:service --name=date-util --project=shared-utils
 feat(auth): add JWT token refresh endpoint
 fix(ui): correct button alignment in support-staff app
 docs(readme): update installation instructions
+feat: add student dashboard
+fix: resolve lint error in ui
+chore: update eslint rules
+docs: update development guide
 ```
 
 **Supported types:** `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`

@@ -18,16 +18,16 @@
             "allow": [],
             "depConstraints": [
               {
+                "sourceTag": "scope:app",
+                "onlyDependOnLibsWithTags": ["scope:shared", "scope:data-access"]
+              },
+              {
                 "sourceTag": "scope:shared",
                 "onlyDependOnLibsWithTags": ["scope:shared"]
               },
               {
                 "sourceTag": "scope:data-access",
-                "onlyDependOnLibsWithTags": ["scope:shared", "scope:data-access"]
-              },
-              {
-                "sourceTag": "scope:feature",
-                "onlyDependOnLibsWithTags": ["scope:shared", "scope:data-access", "scope:feature"]
+                "onlyDependOnLibsWithTags": ["scope:data-access", "scope:shared"]
               }
             ]
           }
@@ -55,6 +55,22 @@
             "selector": "variable",
             "modifiers": ["const", "exported"],
             "format": ["UPPER_CASE"]
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "educrm",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "educrm",
+            "style": "camelCase"
           }
         ]
       }

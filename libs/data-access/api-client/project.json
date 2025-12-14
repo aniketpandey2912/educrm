@@ -4,7 +4,7 @@
   "sourceRoot": "libs/data-access/api-client/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:data-access"],
+  "tags": ["scope:data-access", "type:api-client"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
