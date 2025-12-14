@@ -1,175 +1,149 @@
 # 📘 EduCRM Coding Guidelines
 
-> These are the enforced coding and repo conventions currently followed in the EduCRM Nx monorepo.
+> Non-negotiable coding and architectural rules. Most are enforced automatically.
 
 ---
 
-## 📁 Project Structure
+## 🧱 Nx Module Boundaries (VERY IMPORTANT)
 
-```
-apps/
-  client/
-    student/
-    admin/
-    support-staff/
-    super-admin/
-  server/
-libs/
-  shared/
-    ui/
-    auth/
-    models/
-    utils/
-  data-access/
-    api-client/
-```
+Each Nx project must have:
 
-- All frontend Angular apps live in `apps/client/<role>`.
-- Backend (Express.js) lives in `apps/server/`.
-- Shared logic is organized under `libs/` using clear directories.
+- exactly **one `scope:*` tag**
+- exactly **one `type:*` tag**
+
+### Allowed Import Directions
+
+| From ↓ / To → | shared | data-access | app |
+| ------------- | ------ | ----------- | --- |
+| app           | ✅     | ✅          | ❌  |
+| shared        | ✅     | ❌          | ❌  |
+| data-access   | ✅     | ✅          | ❌  |
+
+### Rules
+
+- Apps may import from `shared` and `data-access`
+- Shared libraries must remain reusable
+- Data-access must not depend on UI
+- Apps must **never import other apps**
+
+🚨 These rules are enforced via `@nx/enforce-module-boundaries`.
 
 ---
 
-### Angular Selector Rules
+## 🅰️ Angular Selector Rules
 
-- All components must use the `educrm-` prefix
-- All selectors must be kebab-case
-- Directives must use attribute selectors with camelCase
+- All **components** must use the `educrm-` prefix
+- Component selectors must be **kebab-case**
+- **Directives** must:
+  - use attribute selectors
+  - be **camelCase**
 - ESLint enforces these rules automatically
 
----
+### Examples
 
-## 📆 Package Management
+```html
+<educrm-student-card></educrm-student-card>
 
-- ✅ Single `package.json` in the root of the Nx workspace.
-- ✅ All frontend and backend dependencies installed at the root.
-- ❄ No per-app package.json files.
+@Directive({ selector: '[educrmHighlight]' })
+```
 
----
+Package Management
 
-## 🏗️ Library & App Generation Conventions
+✅ Single package.json at repository root
 
-- ✅ Use `--directory` instead of `--project-root`.
-- ✅ Follow path like: `libs/shared/ui`, `libs/data-access/api-client`
-- ✅ Use `--no-interactive` flag for Nx CLI to prevent prompts.
+✅ All frontend & backend dependencies live at root
 
-### ✅ Commands
+❌ No per-app or per-lib package.json
 
-#### Create Angular App under Client Folder
+🏗️ App & Library Generation Conventions
+General Rules
+
+- Always use --directory
+- Always use --no-interactive
+- Follow the existing folder conventions strictly
+
+Create Angular Client App
 
 ```bash
 nx g @nx/angular:app --name=admin --directory=apps/client/admin --no-interactive
 ```
 
-#### Create Node.js App for Backend
+Create Backend (Node.js) App
 
 ```bash
 nx g @nx/node:app --name=server --directory=apps/server --no-interactive
 ```
 
-#### Create Angular Library
+Create Angular Library
 
 ```bash
 nx g @nx/angular:lib --name=ui --directory=libs/shared/ui --no-interactive
 nx g @nx/angular:lib --name=auth --directory=libs/shared/auth --no-interactive
 ```
 
-#### Create Component in a Library
+Create Component in a Library
 
 ```bash
-nx g @nx/angular:component --name=card --project=shared-ui --export --flat
+nx g @nx/angular:component card --project=shared-ui --export
 ```
 
-#### Create Service in a Library
+- Generated selectors are auto-prefixed with educrm-.
+
+Create Service in a Library
 
 ```bash
-nx g @nx/angular:service --name=auth --project=shared-auth
+nx g @nx/angular:service auth --project=shared-auth
 ```
 
-#### Create Interface or Model
+✨ Formatting, Linting & Fixing
 
 ```bash
-nx g @nx/angular:interface --name=user --project=shared-models
+npm run fix          # Format + lint + fix (affects only)
+nx lint <project>    # Lint specific project
 ```
 
-#### Create Utility Function
+🚦 Git Workflow Rules
 
-```bash
-nx g @nx/angular:service --name=date-util --project=shared-utils
+- Pre-push hook enforced via Husky
+- Runs: `nx affected -t lint test build`
+
+If any check fails:
+
+- push is blocked
+- fix locally
+- push again
+
+🚫 Do NOT bypass hooks.
+
+📒 Naming Conventions
+
+| Element            | Convention  | Example                        |
+| ------------------ | ----------- | ------------------------------ |
+| File names         | kebab-case  | `student-profile.component.ts` |
+| Folder names       | kebab-case  | `student-dashboard/`           |
+| Variables          | camelCase   | `studentId`                    |
+| Classes / Types    | PascalCase  | `UserModel`, `LoginResponse`   |
+| Exported constants | UPPER_SNAKE | `JWT_SECRET_KEY`               |
+
+- Exported-only constants are enforced via ESLint.
+
+📦 Import Rules
+
+- Always import from a library’s public API
+- Never import from src/lib/\* paths directly
+
+✅ Correct:
+
+```ts
+import { Button } from '@educrm/shared-ui';
 ```
 
----
+❌ Incorrect:
 
-## 🎨 UI Stack
-
-- ✅ **Angular + PrimeNG**
-- ✅ `primeng` and `primeicons` installed
-- ✅ CSS added to `angular.json` styles array
-
-```json
-"styles": [
-  "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-  "node_modules/primeng/resources/primeng.min.css",
-  "node_modules/primeicons/primeicons.css",
-  "apps/client/student/src/styles.css"
-]
+```ts
+import { Button } from '@educrm/shared-ui/src/lib/button';
 ```
 
-- UI components are placed in `libs/shared/ui`.
+✅ Final Rule
 
----
-
-## 🔧 Backend Stack
-
-- ✅ **Node.js + Express.js**
-- ✅ App located in `apps/server/`
-- ✅ Single entry file: `main.ts` or `server.ts`
-- ✅ Uses `express`, `cors`, `dotenv`, `mongoose`, etc.
-
----
-
-## ✅ Commit Message Convention
-
-- ✅ Conventional Commits format
-
-**Examples:**
-
-```bash
-feat(auth): add JWT token refresh endpoint
-fix(ui): correct button alignment in support-staff app
-docs(readme): update installation instructions
-feat: add student dashboard
-fix: resolve lint error in ui
-chore: update eslint rules
-docs: update development guide
-```
-
-**Supported types:** `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
-
----
-
-## 🧱 Component Development
-
-- ✅ PrimeNG is the main UI library
-- ✅ Reusable UI components live in `shared/ui`
-- ❄ Bootstrap is optional, not required
-
----
-
-## 📒 Naming Conventions
-
-| Type           | Style       | Example                        |
-| -------------- | ----------- | ------------------------------ |
-| File names     | kebab-case  | `student-profile.component.ts` |
-| Folder names   | kebab-case  | `student-dashboard/`           |
-| Variables      | camelCase   | `studentId`                    |
-| Classes/Models | PascalCase  | `LoginResponse`, `UserModel`   |
-| Constants      | UPPER_SNAKE | `JWT_SECRET_KEY`               |
-
----
-
-## 🔐 Auth Setup (Planned)
-
-- JWT-based
-- Role-based access guard (future)
-- Shared logic to be kept in `libs/shared/auth`
+If `git push` succeeds, code respects formatting, linting, and architectural boundaries.

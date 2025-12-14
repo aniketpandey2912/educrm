@@ -1,10 +1,10 @@
-# 🌐 EduCRM Client Config: Environment & Proxy Setup
+# 🌐 EduCRM Environment & Proxy Setup
 
-This document outlines the **proxy configuration** and **environment management** setup for all client apps within the EduCRM monorepo.
+Proxy configuration and environment management for all client apps.
 
 ---
 
-## 📁 Folder Structure
+## 📁 Structure
 
 apps/
 └── client/
@@ -69,8 +69,18 @@ Routes frontend API calls to local backend server during development.
 }
 ```
 
+Notes:
+
+- Proxy is for dev only
+- Production builds must point to real backend URLs
+- Do NOT hardcode backend URLs
+
 ⚙️ Environment Aliases
-Configured in tsconfig.base.json:
+
+- Configured in tsconfig.base.json
+- This avoids:
+  - relative imports
+  - accidental cross-app environment usage
 
 ```
 {
@@ -105,10 +115,39 @@ Configured in tsconfig.base.json:
 
 🧪 Usage Example
 
-```
+```ts
 // In a student app service
 import { environment } from '@educrm/environment/student';
 
-console.log(environment.apiBaseUrl); // Output: http://localhost:3000/api/student (dev)
-
+console.log(environment.apiBaseUrl); // http://localhost:3000/api/student (dev)
 ```
+
+Rules:
+
+- Import only the environment for your app
+- Never import another app’s environment
+- Environment values must be read-only
+
+🚫 What NOT to do
+
+- ❌ Do not use process.env directly in frontend code
+- ❌ Do not hardcode URLs in services or components
+- ❌ Do not share environment files between apps
+- ❌ Do not add business logic to environment files
+
+🔐 Secrets & Sensitive Data
+
+- .env files are not committed
+- Use .env.example for reference only
+- Frontend environment files must NOT contain secrets
+- Backend secrets are managed separately (server-side only)
+
+✅ Final Notes
+
+- Environment configuration is per-app
+- Proxy setup is dev-only
+- Production configuration must be explicit and controlled
+- This document should change only when configuration strategy changes
+
+If your app runs locally and switches correctly between dev/prod,
+this setup is working as intended ✅
