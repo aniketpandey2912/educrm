@@ -4,9 +4,9 @@ import { NxWelcomeComponent } from './nx-welcome.component';
 
 @Component({
   imports: [NxWelcomeComponent, RouterModule],
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  selector: 'educrm-root',
+  templateUrl: './root.component.html',
+  styleUrl: './root.component.scss',
 })
 export class AppComponent {
   title = 'super-admin';
