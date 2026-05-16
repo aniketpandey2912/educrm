@@ -3,7 +3,8 @@
   "compilerOptions": {
     "allowJs": true,
     "outDir": "../../../dist/out-tsc",
-    "module": "commonjs",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "types": ["cypress", "node"],
     "sourceMap": false,
     "forceConsistentCasingInFileNames": true,
