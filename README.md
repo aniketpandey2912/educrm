@@ -16,11 +16,17 @@ cd educrm
 npm install
 ```
 
-**Serve**: `nx serve client-student` (or `-admin`, `-support-staff`, `-super-admin`)
+If install fails due to peer dependency conflicts during ecosystem upgrades, retry with:
+
+```bash
+npm install --legacy-peer-deps
+```
+
+**Serve**: `npm run student` (or `admin`, `support`, `super`)
 
 **Backend**: `nx serve server`
 
-**Requirements**: Node.js v18+
+**Requirements**: Node.js v20+
 
 ---
 

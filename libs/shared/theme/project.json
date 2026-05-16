@@ -1,0 +1,12 @@
+{
+  "name": "shared-theme",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/theme/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:theme"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

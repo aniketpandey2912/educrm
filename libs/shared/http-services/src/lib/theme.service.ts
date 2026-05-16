@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { LightTheme } from '@educrm/themes/base.theme';
+import { LightTheme } from '@educrm/shared-theme';
 import { definePreset } from '@primeng/themes';
-import Aura from '@primeuix/themes/dist/aura';
+import Aura from '@primeuix/themes/aura';
+
+type ThemePreset = typeof LightTheme;
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
   private readonly STORAGE_KEY = 'app-theme';
-  private themeSubject = new BehaviorSubject<any>(LightTheme);
+  private themeSubject = new BehaviorSubject<ThemePreset>(LightTheme);
   theme$ = this.themeSubject.asObservable();
 
   constructor() {
@@ -32,12 +34,12 @@ export class ThemeService {
   }
 
   /** Update current theme with custom overrides */
-  updateTheme(overrides: Record<string, any>) {
+  updateTheme(overrides: Record<string, unknown>) {
     const currentTheme = this.themeSubject.getValue();
     const updated = {
       ...currentTheme,
       ...overrides,
-    };
+    } as ThemePreset;
     this.themeSubject.next(updated);
   }
 
