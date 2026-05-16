@@ -6,7 +6,7 @@ jest.mock('@educrm/shared-theme', () => ({
 jest.mock('@primeng/themes', () => ({
   definePreset: () => ({}),
 }));
-jest.mock('@primeuix/themes/aura', () => ({}));
+jest.mock('@primeuix/themes/aura', () => ({}), { virtual: true });
 
 import { ThemeService } from './theme.service';
 
