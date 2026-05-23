@@ -67,7 +67,8 @@
       },
       "options": {
         "buildTarget": "support-staff:build",
-        "proxyConfig": "apps/client/config/proxy.conf.json"
+        "proxyConfig": "apps/client/config/proxy.conf.json",
+        "port": 4302
       },
       "defaultConfiguration": "development",
       "continuous": true
@@ -93,7 +94,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "support-staff:build",
-        "port": 4200,
+        "port": 4302,
         "staticFilePath": "dist/apps/client/support-staff/browser",
         "spa": true
       }

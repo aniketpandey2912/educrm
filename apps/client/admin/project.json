@@ -67,7 +67,8 @@
       },
       "options": {
         "buildTarget": "admin:build",
-        "proxyConfig": "apps/client/config/proxy.conf.json"
+        "proxyConfig": "apps/client/config/proxy.conf.json",
+        "port": 4301
       },
       "defaultConfiguration": "development",
       "continuous": true
@@ -93,7 +94,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "admin:build",
-        "port": 4200,
+        "port": 4301,
         "staticFilePath": "dist/apps/client/admin/browser",
         "spa": true
       }
