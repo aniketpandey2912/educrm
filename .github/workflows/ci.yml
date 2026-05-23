@@ -42,5 +42,5 @@ jobs:
       # Run non-continuous checks together.
       - run: npx nx affected -t lint test build
 
-      # Run e2e in CI mode and avoid port collisions across multiple apps.
-      - run: npx nx affected -t e2e-ci --parallel=1
+      # e2e-ci atomization requires Nx Cloud; use standard e2e while NX_NO_CLOUD is true.
+      - run: npx nx affected -t e2e --parallel=1
