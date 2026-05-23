@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LightTheme } from '@educrm/shared-theme';
-import { definePreset } from '@primeng/themes';
+import { definePreset } from '@primeuix/themes';
 import Aura from '@primeuix/themes/aura';
 
 type ThemePreset = typeof LightTheme;

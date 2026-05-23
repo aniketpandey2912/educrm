@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 jest.mock('@educrm/shared-theme', () => ({
   LightTheme: {},
 }));
-jest.mock('@primeng/themes', () => ({
+jest.mock('@primeuix/themes', () => ({
   definePreset: () => ({}),
 }));
 jest.mock('@primeuix/themes/aura', () => ({}), { virtual: true });
