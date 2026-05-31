@@ -30,7 +30,7 @@ Use setup and environment details here:
 3. Implement the feature.
 4. Run local checks.
 5. Open a PR using the template.
-6. Ensure PR title/body contains required ClickUp references.
+6. Ensure PR body contains required ClickUp references.
 7. Address review comments and merge.
 
 ## 4. Rules You Must Follow
@@ -48,12 +48,21 @@ Full coding rules:
 
 Current repository policy:
 
-- PR title must include ClickUp ticket ID (example: CU-86d33kn24).
+- 2-step PR description process:
+  - Required: ClickUp Ticket ID + Ticket URL in PR body
+  - Required: Description summary (what changed and why)
+
 - PR body must include:
   - ClickUp ticket ID
-  - ClickUp task URL (example: https://app.clickup.com/t/86d33kn24)
+  - ClickUp task URL (example: https://app.clickup.com/t/XXXXXXXX)
+- PR body must also include a brief description.
+- PR title format is flexible.
 
-These are enforced by CI workflow and PR template.
+ClickUp ticket fields are enforced by CI workflow. Description is required by PR template/process.
+
+Detailed PR flow:
+
+- [PULL_REQUEST_PROCESS.md](PULL_REQUEST_PROCESS.md)
 
 ## 6. Where Enforcement Lives
 
@@ -83,5 +92,6 @@ These are enforced by CI workflow and PR template.
 2. Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
 3. Setup: [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md)
 4. Coding rules: [CODING_GUIDELINES.md](CODING_GUIDELINES.md)
+5. PR flow: [PULL_REQUEST_PROCESS.md](PULL_REQUEST_PROCESS.md)
 
 If you can run app + server, pass checks, and open a valid PR, you are ready to contribute.

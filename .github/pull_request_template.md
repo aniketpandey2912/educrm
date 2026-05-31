@@ -1,18 +1,8 @@
-## Summary
-
-- What changed?
-- Why was it needed?
-
-## ClickUp Ticket
+## 1. Required: ClickUp Ticket
 
 - Ticket ID: CU-xxxxxxxx
 - Ticket URL: https://app.clickup.com/t/xxxxxxxx
 
-## Validation
+## 2. Required: Description
 
-- [ ] I ran relevant local checks
-- [ ] I confirmed impacted apps/libs still build
-
-## Notes
-
-- Any rollout, risk, or follow-up notes
+- Add a brief summary of what changed and why.
