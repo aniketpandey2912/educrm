@@ -57,11 +57,15 @@ This workflow checks:
 
 ## 5. Quick Copy Templates
 
-PR body ClickUp section example:
+PR body example:
 
 ```markdown
-## ClickUp Ticket
+## 1. Required: ClickUp Ticket
 
 - Ticket ID: CU-XXXXXXXX
 - Ticket URL: https://app.clickup.com/t/XXXXXXXX
+
+## 2. Required: Description
+
+- Brief summary of what changed and why.
 ```
