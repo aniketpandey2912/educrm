@@ -21,14 +21,17 @@ Use the PR template:
 
 - [../.github/pull_request_template.md](../.github/pull_request_template.md)
 
-Required PR title format:
+PR title:
 
-- Must include ClickUp ticket ID, for example: `CU-XXXXXXXX: docs: improve onboarding`
+- Flexible format (team preference).
+- You can include ticket ID in title if you want, but it is optional.
 
 Required PR body content:
 
 - ClickUp ticket ID
 - ClickUp task URL (for example: https://app.clickup.com/t/XXXXXXXX)
+
+All other PR description sections are optional and flexible.
 
 ## 3. Validation Rules
 
@@ -38,7 +41,6 @@ PR validation is enforced by workflow:
 
 This workflow checks:
 
-- PR title contains `CU-...`
 - PR body contains `CU-...`
 - PR body contains ClickUp URL
 
@@ -50,12 +52,6 @@ This workflow checks:
 4. Merge according to branch protection rules.
 
 ## 5. Quick Copy Templates
-
-PR title example:
-
-```text
-CU-XXXXXXXX: docs: add contributor onboarding entry point
-```
 
 PR body ClickUp section example:
 

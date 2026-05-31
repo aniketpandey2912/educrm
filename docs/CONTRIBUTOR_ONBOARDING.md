@@ -30,7 +30,7 @@ Use setup and environment details here:
 3. Implement the feature.
 4. Run local checks.
 5. Open a PR using the template.
-6. Ensure PR title/body contains required ClickUp references.
+6. Ensure PR body contains required ClickUp references.
 7. Address review comments and merge.
 
 ## 4. Rules You Must Follow
@@ -48,10 +48,10 @@ Full coding rules:
 
 Current repository policy:
 
-- PR title must include ClickUp ticket ID (example: CU-XXXXXXXX).
 - PR body must include:
   - ClickUp ticket ID
   - ClickUp task URL (example: https://app.clickup.com/t/XXXXXXXX)
+- PR title and other description sections are flexible.
 
 These are enforced by CI workflow and PR template.
 

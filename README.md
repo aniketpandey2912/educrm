@@ -40,10 +40,10 @@ npm install --legacy-peer-deps
 
 ## ClickUp and PR Linking
 
-- PR title must include ClickUp ticket id (example: `CU-XXXXXXXX`).
 - PR description must include both:
   - ClickUp ticket id (example: `CU-XXXXXXXX`)
   - ClickUp task URL (example: `https://app.clickup.com/t/XXXXXXXX`)
+- PR title format is flexible.
 - A CI workflow enforces this on every pull request.
 
 ---
