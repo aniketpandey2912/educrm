@@ -50,14 +50,15 @@ Current repository policy:
 
 - 2-step PR description process:
   - Required: ClickUp Ticket ID + Ticket URL in PR body
-  - Optional: all other description content
+  - Required: Description summary (what changed and why)
 
 - PR body must include:
   - ClickUp ticket ID
   - ClickUp task URL (example: https://app.clickup.com/t/XXXXXXXX)
-- PR title and other description sections are flexible.
+- PR body must also include a brief description.
+- PR title format is flexible.
 
-These are enforced by CI workflow and PR template.
+ClickUp ticket fields are enforced by CI workflow. Description is required by PR template/process.
 
 Detailed PR flow:
 

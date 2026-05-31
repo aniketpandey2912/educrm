@@ -3,6 +3,6 @@
 - Ticket ID: CU-xxxxxxxx
 - Ticket URL: https://app.clickup.com/t/xxxxxxxx
 
-## 2. Optional: Description
+## 2. Required: Description
 
-- Add any summary, context, validation, or notes as needed.
+- Add a brief summary of what changed and why.

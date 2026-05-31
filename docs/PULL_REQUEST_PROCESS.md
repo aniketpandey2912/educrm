@@ -30,13 +30,12 @@ Required PR body content:
 
 - ClickUp ticket ID
 - ClickUp task URL (for example: https://app.clickup.com/t/XXXXXXXX)
-
-All other PR description sections are optional and flexible.
+- Description summary (what changed and why)
 
 ## PR Description in 2 Steps
 
 1. Required: include ClickUp Ticket ID and Ticket URL in the PR body.
-2. Optional: add any extra description (summary, validation notes, rollout notes).
+2. Required: include a brief description of what changed and why.
 
 ## 3. Validation Rules
 
