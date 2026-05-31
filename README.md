@@ -33,7 +33,7 @@ npm install --legacy-peer-deps
 ## 📖 Documentation
 
 - [CONTRIBUTOR_ONBOARDING.md](docs/CONTRIBUTOR_ONBOARDING.md) - Single starting point for new contributors
-- [PULL_REQUEST_PROCESS.md](docs/PULL_REQUEST_PROCESS.md) - PR title/body, checks, and merge flow
+- [PULL_REQUEST_PROCESS.md](docs/PULL_REQUEST_PROCESS.md) - 2-step PR process (required ticket info + optional description)
 - [ARCHITECTURE.md](docs/ARCHITECTURE.md) – Structure & design decisions
 - [CODING_GUIDELINES.md](docs/CODING_GUIDELINES.md) – Rules & conventions
 - [ENVIRONMENT_SETUP.md](docs/ENVIRONMENT_SETUP.md) – Config & proxy setup

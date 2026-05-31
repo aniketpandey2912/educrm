@@ -1,6 +1,6 @@
 # Pull Request Process
 
-This page explains how to create a valid pull request in this repository.
+This page explains the 2-step pull request process in this repository.
 
 ## 1. Before You Open a PR
 
@@ -32,6 +32,11 @@ Required PR body content:
 - ClickUp task URL (for example: https://app.clickup.com/t/XXXXXXXX)
 
 All other PR description sections are optional and flexible.
+
+## PR Description in 2 Steps
+
+1. Required: include ClickUp Ticket ID and Ticket URL in the PR body.
+2. Optional: add any extra description (summary, validation notes, rollout notes).
 
 ## 3. Validation Rules
 

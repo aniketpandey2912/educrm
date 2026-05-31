@@ -48,6 +48,10 @@ Full coding rules:
 
 Current repository policy:
 
+- 2-step PR description process:
+  - Required: ClickUp Ticket ID + Ticket URL in PR body
+  - Optional: all other description content
+
 - PR body must include:
   - ClickUp ticket ID
   - ClickUp task URL (example: https://app.clickup.com/t/XXXXXXXX)
