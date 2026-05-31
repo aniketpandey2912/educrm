@@ -29,18 +29,18 @@ jobs:
           echo "Validating PR title and body for ClickUp ticket linkage..."
 
           if ! echo "$PR_TITLE" | grep -Eq "$ticket_pattern"; then
-            echo "ERROR: PR title must include a ClickUp ticket id (example: CU-86d33kn24)."
+            echo "ERROR: PR title must include a ClickUp ticket id (example: CU-XXXXXXXX)."
             echo "Current title: $PR_TITLE"
             exit 1
           fi
 
           if ! echo "$PR_BODY" | grep -Eq "$ticket_pattern"; then
-            echo "ERROR: PR body must include a ClickUp ticket id (example: CU-86d33kn24)."
+            echo "ERROR: PR body must include a ClickUp ticket id (example: CU-XXXXXXXX)."
             exit 1
           fi
 
           if ! echo "$PR_BODY" | grep -Eq "$clickup_url_pattern"; then
-            echo "ERROR: PR body must include a ClickUp task URL (example: https://app.clickup.com/t/86d33kn24)."
+            echo "ERROR: PR body must include a ClickUp task URL (example: https://app.clickup.com/t/XXXXXXXX)."
             exit 1
           fi
 

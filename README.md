@@ -33,16 +33,17 @@ npm install --legacy-peer-deps
 ## 📖 Documentation
 
 - [CONTRIBUTOR_ONBOARDING.md](docs/CONTRIBUTOR_ONBOARDING.md) - Single starting point for new contributors
+- [PULL_REQUEST_PROCESS.md](docs/PULL_REQUEST_PROCESS.md) - PR title/body, checks, and merge flow
 - [ARCHITECTURE.md](docs/ARCHITECTURE.md) – Structure & design decisions
 - [CODING_GUIDELINES.md](docs/CODING_GUIDELINES.md) – Rules & conventions
 - [ENVIRONMENT_SETUP.md](docs/ENVIRONMENT_SETUP.md) – Config & proxy setup
 
 ## ClickUp and PR Linking
 
-- PR title must include ClickUp ticket id (example: `CU-86d33kn24`).
+- PR title must include ClickUp ticket id (example: `CU-XXXXXXXX`).
 - PR description must include both:
-  - ClickUp ticket id (example: `CU-86d33kn24`)
-  - ClickUp task URL (example: `https://app.clickup.com/t/86d33kn24`)
+  - ClickUp ticket id (example: `CU-XXXXXXXX`)
+  - ClickUp task URL (example: `https://app.clickup.com/t/XXXXXXXX`)
 - A CI workflow enforces this on every pull request.
 
 ---

@@ -48,12 +48,16 @@ Full coding rules:
 
 Current repository policy:
 
-- PR title must include ClickUp ticket ID (example: CU-86d33kn24).
+- PR title must include ClickUp ticket ID (example: CU-XXXXXXXX).
 - PR body must include:
   - ClickUp ticket ID
-  - ClickUp task URL (example: https://app.clickup.com/t/86d33kn24)
+  - ClickUp task URL (example: https://app.clickup.com/t/XXXXXXXX)
 
 These are enforced by CI workflow and PR template.
+
+Detailed PR flow:
+
+- [PULL_REQUEST_PROCESS.md](PULL_REQUEST_PROCESS.md)
 
 ## 6. Where Enforcement Lives
 
@@ -83,5 +87,6 @@ These are enforced by CI workflow and PR template.
 2. Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
 3. Setup: [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md)
 4. Coding rules: [CODING_GUIDELINES.md](CODING_GUIDELINES.md)
+5. PR flow: [PULL_REQUEST_PROCESS.md](PULL_REQUEST_PROCESS.md)
 
 If you can run app + server, pass checks, and open a valid PR, you are ready to contribute.
