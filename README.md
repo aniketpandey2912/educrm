@@ -32,6 +32,7 @@ npm install --legacy-peer-deps
 
 ## 📖 Documentation
 
+- [CONTRIBUTOR_ONBOARDING.md](docs/CONTRIBUTOR_ONBOARDING.md) - Single starting point for new contributors
 - [ARCHITECTURE.md](docs/ARCHITECTURE.md) – Structure & design decisions
 - [CODING_GUIDELINES.md](docs/CODING_GUIDELINES.md) – Rules & conventions
 - [ENVIRONMENT_SETUP.md](docs/ENVIRONMENT_SETUP.md) – Config & proxy setup
