@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import cors from 'cors';
 
 function buildAllowedOrigins(): string[] {
