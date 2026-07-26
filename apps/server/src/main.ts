@@ -8,6 +8,7 @@ import { corsMiddleware } from './middleware/cors.middleware';
 import { morganMiddleware } from './middleware/morgan.middleware';
 import { helmetMiddleware } from './middleware/helmet.middleware';
 import { errorMiddleware } from './middleware/error.middleware';
+import { apiRateLimiterMiddleware } from './middleware/rate-limit.middleware';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +19,7 @@ app.use(helmetMiddleware);
 app.use(corsMiddleware);
 app.use(morganMiddleware);
 app.use(express.json());
+app.use(apiRateLimiterMiddleware);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
