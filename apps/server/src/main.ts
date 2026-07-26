@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import { corsMiddleware } from './middleware/cors.middleware';
 import { morganMiddleware } from './middleware/morgan.middleware';
 import { helmetMiddleware } from './middleware/helmet.middleware';
+import { errorMiddleware } from './middleware/error.middleware';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +23,9 @@ app.use(express.json());
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'OK' });
 });
+
+// Global error handler - must be last middleware
+app.use(errorMiddleware);
 
 // Connect to MongoDB then start the server
 mongoose
