@@ -64,6 +64,11 @@ export async function signup(req: Request, res: Response, next: NextFunction): P
 
     res.status(201).json({ message: 'Signup successful' });
   } catch (error) {
+    // Concurrent signups can both pass the findOne check above; the unique index is the real guard.
+    if (error && typeof error === 'object' && 'code' in error && error.code === 11000) {
+      res.status(409).json({ message: 'An account with this email already exists' });
+      return;
+    }
     next(error);
   }
 }
