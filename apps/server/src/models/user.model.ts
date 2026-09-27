@@ -21,6 +21,7 @@ export interface IUserDocument extends Document {
   deletedAt: Date | null; // soft delete
   createdAt: Date;
   updatedAt: Date;
+  refreshTokenHash: string | null; // refresh token for DB-backed revocation
 }
 
 const UserSchema: Schema = new Schema<IUserDocument>(
@@ -35,6 +36,7 @@ const UserSchema: Schema = new Schema<IUserDocument>(
     isEmailVerified: { type: Boolean, default: false },
     lastLoginAt: { type: Date, default: null },
     deletedAt: { type: Date, default: null },
+    refreshTokenHash: { type: String, default: null, index: true },
   },
   { timestamps: true, discriminatorKey: '__t' },
 );

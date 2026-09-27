@@ -3,12 +3,15 @@ import 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';
 
-// internal imports
+// internal imports - middleware
 import { corsMiddleware } from './middleware/cors.middleware';
 import { morganMiddleware } from './middleware/morgan.middleware';
 import { helmetMiddleware } from './middleware/helmet.middleware';
 import { errorMiddleware } from './middleware/error.middleware';
 import { apiRateLimiterMiddleware } from './middleware/rate-limit.middleware';
+
+// internal imports - routers
+import authRouter from './routes/auth.routes';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,6 +28,9 @@ app.use(apiRateLimiterMiddleware);
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'OK' });
 });
+
+// Routers
+app.use('/api/auth', authRouter);
 
 // Global error handler - must be last middleware
 app.use(errorMiddleware);
