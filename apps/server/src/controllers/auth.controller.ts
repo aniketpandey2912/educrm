@@ -4,7 +4,12 @@ import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import { UserModel, UserRole } from '../models/user.model';
 import { OrgModel } from '../models/org.model';
-import { signupSchema } from '../validators/auth.validators';
+import {
+  signupSchema,
+  loginSchema,
+  logoutSchema,
+  refreshTokenSchema,
+} from '../validators/auth.validators';
 
 const ACCESS_TOKEN_SECRET = requireEnv('JWT_SECRET');
 const REFRESH_TOKEN_SECRET = requireEnv('JWT_REFRESH_SECRET');
@@ -66,12 +71,13 @@ export async function signup(req: Request, res: Response, next: NextFunction): P
 // POST /api/auth/login
 export async function login(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const { email, password } = req.body;
-
-    if (typeof email !== 'string' || typeof password !== 'string') {
+    const parsed = loginSchema.safeParse(req.body);
+    if (!parsed.success) {
       res.status(401).json({ message: 'Invalid credentials' });
       return;
     }
+
+    const { email, password } = parsed.data;
 
     const user = await UserModel.findOne({
       email: email.toLowerCase().trim(),
@@ -112,9 +118,10 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
 // POST /api/auth/logout
 export async function logout(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const { refreshToken } = req.body;
+    const parsed = logoutSchema.safeParse(req.body);
+    const refreshToken = parsed.success ? parsed.data.refreshToken : undefined;
 
-    if (typeof refreshToken === 'string' && refreshToken.length > 0) {
+    if (refreshToken) {
       const hash = hashToken(refreshToken);
       await UserModel.findOneAndUpdate({ refreshTokenHash: hash }, { refreshTokenHash: null });
     }
@@ -128,12 +135,13 @@ export async function logout(req: Request, res: Response, next: NextFunction): P
 // POST /api/auth/refresh-token
 export async function refreshToken(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const { refreshToken } = req.body;
-
-    if (!refreshToken) {
+    const parsed = refreshTokenSchema.safeParse(req.body);
+    if (!parsed.success) {
       res.status(400).json({ message: 'Refresh token is required' });
       return;
     }
+
+    const { refreshToken } = parsed.data;
 
     let payload: jwt.JwtPayload;
     try {
