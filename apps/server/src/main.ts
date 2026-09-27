@@ -12,6 +12,10 @@ import { apiRateLimiterMiddleware } from './middleware/rate-limit.middleware';
 
 // internal imports - routers
 import authRouter from './routes/auth.routes';
+import superAdminRouter from './routes/super-admin.routes';
+import studentRouter from './routes/student.routes';
+import adminRouter from './routes/admin.routes';
+import supportStaffRouter from './routes/support-staff.routes';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,6 +35,10 @@ app.get('/api/health', (req, res) => {
 
 // Routers
 app.use('/api/auth', authRouter);
+app.use('/api/student', studentRouter);
+app.use('/api/admin', adminRouter);
+app.use('/api/support-staff', supportStaffRouter);
+app.use('/api/super-admin', superAdminRouter);
 
 // Global error handler - must be last middleware
 app.use(errorMiddleware);

@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiBaseUrl: '/api/super',
+  apiBaseUrl: '/api/super-admin',
   debug: true,
 };

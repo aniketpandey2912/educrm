@@ -54,13 +54,13 @@ Routes frontend API calls to local backend server during development.
     "changeOrigin": true,
     "logLevel": "debug"
   },
-  "/api/super": {
+  "/api/super-admin": {
     "target": "http://localhost:3000",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
   },
-  "/api/staff": {
+  "/api/support-staff": {
     "target": "http://localhost:3000",
     "secure": false,
     "changeOrigin": true,
