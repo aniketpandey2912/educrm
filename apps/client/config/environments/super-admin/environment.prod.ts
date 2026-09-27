@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://api.educrm.com/super',
+  apiBaseUrl: 'https://api.educrm.com/super-admin',
   debug: false,
 };
