@@ -2,7 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
-import { UserModel } from '../models/user.model';
+import { UserModel, UserRole } from '../models/user.model';
+import { OrgModel } from '../models/org.model';
+import { signupSchema } from '../validators/auth.validators';
 
 const ACCESS_TOKEN_SECRET = requireEnv('JWT_SECRET');
 const REFRESH_TOKEN_SECRET = requireEnv('JWT_REFRESH_SECRET');
@@ -15,6 +17,50 @@ function requireEnv(name: string): string {
 
 function hashToken(token: string): string {
   return crypto.createHash('sha256').update(token).digest('hex');
+}
+
+// POST /api/auth/signup
+// Student self-registration only; staff/admin roles are provisioned separately (not via public signup).
+export async function signup(req: Request, res: Response, next: NextFunction): Promise<void> {
+  try {
+    const parsed = signupSchema.safeParse(req.body);
+    if (!parsed.success) {
+      res
+        .status(400)
+        .json({ message: parsed.error.issues[0]?.message ?? 'Invalid signup payload' });
+      return;
+    }
+
+    const { firstName, lastName, email, password, orgSlug } = parsed.data;
+
+    const org = await OrgModel.findOne({ slug: orgSlug, isActive: true });
+    if (!org) {
+      res.status(404).json({ message: 'Organization not found' });
+      return;
+    }
+
+    const existing = await UserModel.findOne({ email });
+    if (existing) {
+      res.status(409).json({ message: 'An account with this email already exists' });
+      return;
+    }
+
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    await UserModel.create({
+      firstName,
+      lastName,
+      email,
+      passwordHash,
+      role: UserRole.STUDENT,
+      org_id: org._id,
+      isEmailVerified: true, // no email service wired up yet; see CU-86d33kn24 backlog
+    });
+
+    res.status(201).json({ message: 'Signup successful' });
+  } catch (error) {
+    next(error);
+  }
 }
 
 // POST /api/auth/login
