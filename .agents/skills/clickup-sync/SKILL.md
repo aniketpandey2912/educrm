@@ -9,7 +9,7 @@ Keeps ClickUp tickets aligned with actual engineering progress and preserves a r
 
 ## Why this exists
 
-This repo enforces a ClickUp ticket link on every PR (see [../../pull_request_template.md](../../pull_request_template.md) and [../../workflows/pr-clickup-validation.yml](../../workflows/pr-clickup-validation.yml)), but nothing keeps the ticket's **status/comments** in sync after merge, and decisions made mid-session (e.g. "DB-stored refresh tokens vs stateless JWT") otherwise only live in chat history.
+This repo enforces a ClickUp ticket link on every PR (see [../../../.github/pull_request_template.md](../../../.github/pull_request_template.md) and [../../../.github/workflows/pr-clickup-validation.yml](../../../.github/workflows/pr-clickup-validation.yml)), but nothing keeps the ticket's **status/comments** in sync after merge, and decisions made mid-session (e.g. "DB-stored refresh tokens vs stateless JWT") otherwise only live in chat history.
 
 ## Trigger points
 
