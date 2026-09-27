@@ -44,12 +44,9 @@ There is no direct ClickUp API tool available in this environment as of writing.
 - If browser automation isn't practical (e.g. requires login the agent can't complete), give the user the final copy-paste-ready text and the ticket URL, and ask them to paste it in.
 - If a real ClickUp MCP/API tool becomes available later, prefer it over browser automation.
 
-### Step 5 — Record locally too
-
-After a confirmed decision (whether or not ClickUp was updated), add a one-line entry to `/memories/repo/PROJECT_OVERVIEW.md` under "Recent Work" or a decisions log, so future sessions have the context even without opening ClickUp.
-
 ## What NOT to do
 
 - Don't post to ClickUp without showing the exact text first.
 - Don't infer a ticket ID — confirm it if it's not explicitly linked in the PR/branch.
 - Don't batch multiple unrelated decisions into one vague comment — keep updates scoped to one ticket/topic at a time.
+- Don't log decisions, deferred features, or backlog items into repo memory (`/memories/repo/*`) — ClickUp is the sole source of truth for project decisions/roadmap. Repo memory stays strictly codebase-scoped (conventions, build commands, structure, verified practices) to avoid bloat.
