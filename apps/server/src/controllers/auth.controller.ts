@@ -4,8 +4,14 @@ import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import { UserModel } from '../models/user.model';
 
-const ACCESS_TOKEN_SECRET = process.env['JWT_SECRET'] as string;
-const REFRESH_TOKEN_SECRET = process.env['JWT_REFRESH_SECRET'] as string;
+const ACCESS_TOKEN_SECRET = requireEnv('JWT_SECRET');
+const REFRESH_TOKEN_SECRET = requireEnv('JWT_REFRESH_SECRET');
+
+function requireEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) throw new Error(`[auth] ${name} environment variable is required`);
+  return value;
+}
 
 function hashToken(token: string): string {
   return crypto.createHash('sha256').update(token).digest('hex');
@@ -16,7 +22,17 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
   try {
     const { email, password } = req.body;
 
-    const user = await UserModel.findOne({ email, isActive: true, deletedAt: null });
+    if (typeof email !== 'string' || typeof password !== 'string') {
+      res.status(401).json({ message: 'Invalid credentials' });
+      return;
+    }
+
+    const user = await UserModel.findOne({
+      email: email.toLowerCase().trim(),
+      isActive: true,
+      isEmailVerified: true,
+      deletedAt: null,
+    });
 
     if (!user) {
       res.status(401).json({ message: 'Invalid credentials' });
@@ -29,7 +45,11 @@ export async function login(req: Request, res: Response, next: NextFunction): Pr
       return;
     }
 
-    const payload = { sub: user._id, role: user.role, org_id: user.org_id };
+    const payload = {
+      sub: user._id.toString(),
+      role: user.role,
+      org_id: user.org_id?.toString() ?? null,
+    };
 
     const accessToken = jwt.sign(payload, ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
     const refreshToken = jwt.sign(payload, REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
@@ -48,7 +68,7 @@ export async function logout(req: Request, res: Response, next: NextFunction): P
   try {
     const { refreshToken } = req.body;
 
-    if (refreshToken) {
+    if (typeof refreshToken === 'string' && refreshToken.length > 0) {
       const hash = hashToken(refreshToken);
       await UserModel.findOneAndUpdate({ refreshTokenHash: hash }, { refreshTokenHash: null });
     }
@@ -59,7 +79,7 @@ export async function logout(req: Request, res: Response, next: NextFunction): P
   }
 }
 
-// POST /api/auth/refresh
+// POST /api/auth/refresh-token
 export async function refreshToken(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
     const { refreshToken } = req.body;
@@ -90,7 +110,11 @@ export async function refreshToken(req: Request, res: Response, next: NextFuncti
       return;
     }
 
-    const newPayload = { sub: user._id, role: user.role, org_id: user.org_id };
+    const newPayload = {
+      sub: user._id.toString(),
+      role: user.role,
+      org_id: user.org_id?.toString() ?? null,
+    };
     const newAccessToken = jwt.sign(newPayload, ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
 
     res.status(200).json({ accessToken: newAccessToken });

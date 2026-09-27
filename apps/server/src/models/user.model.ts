@@ -36,7 +36,7 @@ const UserSchema: Schema = new Schema<IUserDocument>(
     isEmailVerified: { type: Boolean, default: false },
     lastLoginAt: { type: Date, default: null },
     deletedAt: { type: Date, default: null },
-    refreshTokenHash: { type: String, default: null },
+    refreshTokenHash: { type: String, default: null, index: true },
   },
   { timestamps: true, discriminatorKey: '__t' },
 );
