@@ -37,6 +37,7 @@ npm install --legacy-peer-deps
 - [ARCHITECTURE.md](docs/ARCHITECTURE.md) – Structure & design decisions
 - [CODING_GUIDELINES.md](docs/CODING_GUIDELINES.md) – Rules & conventions
 - [ENVIRONMENT_SETUP.md](docs/ENVIRONMENT_SETUP.md) – Config & proxy setup
+- [API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md) – Backend API reference (Swagger)
 
 ## ClickUp and PR Linking
 
