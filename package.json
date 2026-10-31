@@ -9,6 +9,7 @@
     "super": "nx serve super-admin --port=4303 --open",
     "server": "nx serve server",
     "fix": "nx format:write && nx affected:lint --fix",
+    "docs:generate": "ts-node --project apps/server/tsconfig.app.json apps/server/src/docs/generate-openapi.ts",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -49,6 +50,7 @@
     "primeicons": "^7.0.0",
     "primeng": "^21.1.8",
     "rxjs": "~7.8.0",
+    "swagger-ui-express": "^5.0.1",
     "zod": "^4.4.3",
     "zone.js": "0.16.2"
   },
@@ -80,6 +82,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/morgan": "^1.9.10",
     "@types/node": "18.16.9",
+    "@types/swagger-ui-express": "^4.1.8",
     "@typescript-eslint/utils": "^8.59.4",
     "angular-eslint": "^21.4.0",
     "autoprefixer": "^10.4.0",

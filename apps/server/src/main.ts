@@ -2,6 +2,7 @@
 import 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';
+import swaggerUi from 'swagger-ui-express';
 
 // internal imports - middleware
 import { corsMiddleware } from './middleware/cors.middleware';
@@ -16,6 +17,9 @@ import superAdminRouter from './routes/super-admin.routes';
 import studentRouter from './routes/student.routes';
 import adminRouter from './routes/admin.routes';
 import supportStaffRouter from './routes/support-staff.routes';
+
+// internal imports - docs
+import { openApiDocument } from './docs/openapi';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,6 +36,12 @@ app.use(apiRateLimiterMiddleware);
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'OK' });
 });
+
+// API docs
+app.get('/api/docs.json', (req, res) => {
+  res.status(200).json(openApiDocument);
+});
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(openApiDocument));
 
 // Routers
 app.use('/api/auth', authRouter);
