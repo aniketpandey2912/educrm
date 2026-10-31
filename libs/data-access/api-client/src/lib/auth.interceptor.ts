@@ -33,11 +33,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       );
 
       return refreshInFlight$.pipe(
-        switchMap(({ accessToken }) => next(withToken(req, accessToken))),
         catchError((refreshError: unknown) => {
           authService.logout().subscribe();
           return throwError(() => refreshError);
         }),
+        switchMap(({ accessToken }) => next(withToken(req, accessToken))),
       );
     }),
   );

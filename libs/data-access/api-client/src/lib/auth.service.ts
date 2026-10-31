@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, throwError } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { AuthUser, LoginRequest } from '@educrm/models';
 import { decodeJwt } from '@educrm/utils';
 import { AuthApiService } from './auth-api.service';
@@ -42,7 +42,13 @@ export class AuthService {
 
   logout() {
     const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY) ?? undefined;
-    return this.authApi.logout(refreshToken).pipe(tap(() => this.clearSession()));
+    return this.authApi.logout(refreshToken).pipe(
+      tap(() => this.clearSession()),
+      catchError((error: unknown) => {
+        this.clearSession();
+        return throwError(() => error);
+      }),
+    );
   }
 
   private storeSession(accessToken: string, refreshToken: string): void {
